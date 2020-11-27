@@ -16,27 +16,26 @@ ROOT(t)
 	return t.root;
 }
 
-LEFT(t,n)
+LEFT(t, n)
 {
 	return n.left;
 }
 
-RIGHT(t,n)
+RIGHT(t, n)
 {
 	return n.right;
 }
 
-INFO(t,n)
+INFO(t, n)
 {
 	return n.info;
 }
 
-TWO_CHILDREN(n)
-{
-	return (n.right != NULL) && (n.left != NULL)
+TWO_CHILDREN(n) {
+		return (n.right != NULL) && (n.left != NULL
 }
 
-ADD_ROOT(t,k)
+ADD_ROOT(t, k)
 {
 	// Creo nuovo nodo
 	x.info = k;
@@ -44,10 +43,9 @@ ADD_ROOT(t,k)
 	x.right = NULL;
 	x.left = NULL;
 	t.root = x;
-
 }
 
-ADD_LEFT(t,n,z)
+ADD_LEFT(t, n, z)
 {
 	// Creazione nuovo nodo
 	x.info = z;
@@ -56,20 +54,19 @@ ADD_LEFT(t,n,z)
 	x.left = NULL;
 
 	n.left = x;
-
 }
 
 /* Controlla se ci sono solo figli sinistri (o non ci sono) */
 ONLY_LEFT(t)
 {
 	x = t.root;
-	while(x != NULL)
+	while (x != NULL)
 	{
 
-	if(x.right != NULL)
-		return false;
-	else
-		x = x.left;
+		if (x.right != NULL)
+			return false;
+		else
+			x = x.left;
 	}
 
 	return true;
@@ -78,7 +75,7 @@ ONLY_LEFT(t)
 /* ALBERI DI GRADO ARBITRARIO */
 
 /* t e' un albero di grado arbitrario */
-ADD_SIBLING(t,n,z)
+ADD_SIBLING(t, n, z)
 {
 	x.info = z;
 	x.parent = n;
@@ -89,67 +86,64 @@ ADD_SIBLING(t,n,z)
 }
 
 /* Cerca in pre-ordine */
-CERCA_PRE(t,n)
+CERCA_PRE(t, n)
 {
-	if(t.root == NULL)
+	if (t.root == NULL)
 		return false;
 	else
-		CERCA_RIC(t.root,n);
+		CERCA_RIC(t.root, n);
 }
-CERCA_PRE_RIC(t,n)
+CERCA_PRE_RIC(t, n)
 {
-	
-	if(t.info == n)
+
+	if (t.info == n)
 		return true;
 
 	bool l = false;
 	bool r = false;
 
-	if(t.left != NULL)
-		l = CERCA(t.left,n);
-	if(t.right != NULL)
-		r = CERCA(t.right,n);
+	if (t.left != NULL)
+		l = CERCA(t.left, n);
+	if (t.right != NULL)
+		r = CERCA(t.right, n);
 
 	return l || r;
-
 }
 /*------------------- */
 
 /* Ricerca in post-ordine */
 
-CERCA_POST(t,n)
+CERCA_POST(t, n)
 {
 	return CERCA_RIC(t.root, n);
 }
 
-CERCA_POST_RIC(t,n)
+CERCA_POST_RIC(t, n)
 {
 	if (t == NULL)
 		return false;
 
-		l = CERCA_RIC(t.left,n)
-		r = CERCA_RIC(t.right,n);
+	l = CERCA_RIC(t.left, n)
+			r = CERCA_RIC(t.right, n);
 
 	return (t.info == u) || l || r;
-
 }
 
 /* Ricerca in ordine simmetrico */
-CERCA_SIMM(t,n)
+CERCA_SIMM(t, n)
 {
-	return CERCA_SIMM_RIC(t.root,n);
+	return CERCA_SIMM_RIC(t.root, n);
 }
 
-CERCA_SIMM_RIC(n,c)
+CERCA_SIMM_RIC(n, c)
 {
-	if(n == NULL)
+	if (n == NULL)
 		return false;
-	l = CERCA_SIMM_RIC(n.left,c);
-	if(n.info == c)
+	l = CERCA_SIMM_RIC(n.left, c);
+	if (n.info == c)
 		return true;
 
-	return CERCA_SIMM_RIC(n.right,c);
-
+	return CERCA_SIMM_RIC(n.right, c);
 }
 
 /* Conta nodi in post-ordine */
@@ -157,31 +151,30 @@ CONTA_NODI(t)
 {
 	return CONTA_NODI_RIC(t.root)
 
-CONTA_NODI_RIC(n,c)
-{
+			CONTA_NODI_RIC(n, c)
+	{
 
-	if(n == NULL)
-		return false;
+		if (n == NULL)
+			return false;
 
-	l = CONTA_NODI_RIC(n.left,c);
-	r = CONTA_NODI_RIC(n.right, c);
+		l = CONTA_NODI_RIC(n.left, c);
+		r = CONTA_NODI_RIC(n.right, c);
 
-	return l + r + 1;
-}
+		return l + r + 1;
+	}
 
-CAMMINO(t)
-{
-	return CAMMINO_RIC(t.root);
-}
+	CAMMINO(t)
+	{
+		return CAMMINO_RIC(t.root);
+	}
 
-CAMMINO_RIC(n)
-{
-	if(n == NULL)
-		return true;
-	l = CAMMINO_RIC(n.left);
-	r = CAMMINO_RIC(n.right);
-	if(n.left != NULL) && (n.right != NULL)
-		return false;
-	return l && r;
-		
-}
+	CAMMINO_RIC(n)
+	{
+		if (n == NULL)
+			return true;
+		l = CAMMINO_RIC(n.left);
+		r = CAMMINO_RIC(n.right);
+		if (n.left != NULL)
+			&&(n.right != NULL) return false;
+		return l && r;
+	}

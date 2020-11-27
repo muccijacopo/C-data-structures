@@ -11,27 +11,25 @@ IS_EMPTY()
 }
 
 /* ENQUEUE: Aggiungi nuovo elemento in coda */
-ENQUEUE(c,u)
+ENQUEUE(c, u)
 {
 	x.info = u;
 	x.next = NULL;
 
-	if IS_EMPTY(c)
+	if IS_EMPTY (c)
 		c.head = x;
-		return
+	return
 
-	else
-		nodo = c.head;
-		while(nodo.next != NULL)
-			nodo = nodo.next;
+		else nodo = c.head;
+	while (nodo.next != NULL)
+		nodo = nodo.next;
 
-		nodo.next = x;
-
+	nodo.next = x;
 }
 /* DEQUEUE: Rimuove l'elemento più vecchio della coda e lo restituisce */
-DEQUEUE(c) 
+DEQUEUE(c)
 {
-	if IS_EMPTY(c)
+	if IS_EMPTY (c)
 		printf("Coda vuota, nulla da eliminare.");
 
 	else
