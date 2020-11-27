@@ -1,5 +1,5 @@
 /* Resituisce il valore massimo di una lista */
-int massimo(l) 
+int massimo(l)
 {
 	x = l.head;
 
@@ -7,17 +7,19 @@ int massimo(l)
 		printf("Lista vuota");
 	else
 		int max = x.info;
-		x = x.next;
+	x = x.next;
 
-		while(x != NULL) {
-			if(x.info > max) {
-				max = x.info;
-			}
-
-			x = x.next;
+	while (x != NULL)
+	{
+		if (x.info > max)
+		{
+			max = x.info;
 		}
 
-		return max;
+		x = x.next;
+	}
+
+	return max;
 }
 
 /* Resituisce la somma degli elementi contenuti
@@ -26,29 +28,28 @@ int somma(l)
 {
 	x = l.head;
 
-	if(x == NULL)
+	if (x == NULL)
 		printf("La lista è vuota");
 	else
 		int somma = 0;
-		while(x != NULL)
-		{
-			somma = somma + x.info;
-			x = x.next;
-		}
-
+	while (x != NULL)
+	{
+		somma = somma + x.info;
+		x = x.next;
+	}
 
 	return somma;
 }
 
 /* Ritorna il riferimento all'elemento i che contiene
 il valoro intero u in una lista singolarmente concatenata di interi */
-int search(l,u) 
+int search(l, u)
 {
 	x = l.head;
 
-	while(x != NULL)
+	while (x != NULL)
 	{
-		if(x.info == u)
+		if (x.info == u)
 			return x;
 
 		x = x.next;
@@ -58,13 +59,13 @@ int search(l,u)
 }
 
 /* Ritorna il riferimento all'elemento che precedere l'elemento i */
-int prev(l,i) 
+int prev(l, i)
 {
 	x = l.head;
-	
-	while(x != NULL)
+
+	while (x != NULL)
 	{
-		if(x.next == i)
+		if (x.next == i)
 			return x;
 		x = x.next;
 	}
@@ -73,15 +74,15 @@ int prev(l,i)
 }
 
 /* Cancella nodo u */
-void delete(l,u)
+void delete (l, u)
 {
 	x = l.head;
 
-	if(x == NULL)
+	if (x == NULL)
 		printf("Lista vuota");
-	else 
+	else
 	{
-		if(x.info == u)
+		if (x.info == u)
 		{
 			l.head = l.head.next;
 			x = l.head;
@@ -90,22 +91,20 @@ void delete(l,u)
 		{
 			prev = x;
 			x = x.next;
-			while(x != NULL)
+			while (x != NULL)
 			{
-				if(x.info == u)
+				if (x.info == u)
 					prev.next = x.next;
-					return 0;
+				return 0;
 
 				x = x.next;
 				prev = prev.next;
 			}
 		}
-
 	}
-
 }
 
-int COMUNI(l1,l2)
+int COMUNI(l1, l2)
 {
 	int comuni = 0;
 	x = l1.head;
@@ -114,14 +113,14 @@ int COMUNI(l1,l2)
 		printf("Non ci sono elementi in comune.");
 
 	else
-		while(x != NULL)
+		while (x != NULL)
 			y = l2.head;
-			while(y != NULL)
-				if (x.info == y.info)
-					comuni++;
-			y = y.next;
+	while (y != NULL)
+		if (x.info == y.info)
+			comuni++;
+	y = y.next;
 
-		x = x.next;
+	x = x.next;
 }
 
 INVERSA(l1)
@@ -130,10 +129,10 @@ INVERSA(l1)
 
 	x = l1.head;
 
-	if IS_EMPTY(l1)
+	if IS_EMPTY (l1)
 		printf("Lista vuota, non invertibile.");
 	else
-		while(x != NULL)
+		while (x != NULL)
 		{
 			newnodo.info = x.info;
 			newnodo.next = l2.head;
@@ -143,54 +142,53 @@ INVERSA(l1)
 	return l2;
 }
 
-
-ACCODA(l1,l2)
+ACCODA(l1, l2)
 {
 	x = l1.head;
 
-	if IS_EMPTY(l1)
+	if IS_EMPTY (l1)
 		x = l2.head;
-		return 0;
+	return 0;
 
-	while(x.next != NULL)
+	while (x.next != NULL)
 	{
 		x = x.next;
 	}
 
 	x.next = l2.head;
-
-
 }
 
+void INSERT(list *pl, int u)
+{
 
-void INSERT(list* pl, int u){
-
-	elem* e = (elem*)malloc(sizeof(elem));
+	elem *e = (elem *)malloc(sizeof(elem));
 	e->info = u;
 	e->prev = NULL;
 	e->next = (*pl);
-	if( (*pl) != NULL ) {  // c'era gia' un elemento in lista
+	if ((*pl) != NULL)
+	{ // c'era gia' un elemento in lista
 		(*pl)->prev = e;
 	}
 	(*pl) = e;
 }
 
+void DELETE(list *pl, int u)
+{
 
-void DELETE(list* pl, int u) {
-
-	elem* e = (*pl);
-	while ( e != NULL) {
-		if( e->info == u) {  // l'ho trovato e lo rimuovo
-			if( e->prev != NULL) 
+	elem *e = (*pl);
+	while (e != NULL)
+	{
+		if (e->info == u)
+		{ // l'ho trovato e lo rimuovo
+			if (e->prev != NULL)
 				e->prev->next = e->next;
 			else
 				(*pl) = e->next;
-			if( e->next != NULL)
+			if (e->next != NULL)
 				e->next->prev = e->prev;
 			free(e);
 			return;
 		}
 		e = e->next;
 	}
-
 }
